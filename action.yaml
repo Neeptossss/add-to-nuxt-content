@@ -45,7 +45,7 @@ runs:
         destination-username: ${{ inputs.repo.owner }}
         destination-repository: ${{ inputs.repo.name }}
         destination-branch: ${{ inputs.branch }}
-        destination-folder: ${{ inputs.distant-md-path }}
+        destination-directory: ${{ inputs.distant-md-path }}
         commit-message: ${{ inputs.commit }}
     - name: 'Add images to Nuxt Content'
       uses: 'nkoppel/push-files-to-another-repository@v1.1.2'
@@ -56,5 +56,5 @@ runs:
           destination-username: ${{ inputs.repo.owner }}
           destination-repository: ${{ inputs.repo.name }}
           destination-branch: ${{ inputs.branch }}
-          destination-folder: ${{ inputs.distant-img-path }}
+          destination-directory: ${{ inputs.distant-img-path }}
           commit-message: ${{ inputs.commit }}

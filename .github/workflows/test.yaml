@@ -1,0 +1,12 @@
+on: [push]
+
+jobs:
+  test_action:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: neeptossss/add-to-nuxt-content@v1
+        with:
+          repo-owner: 'neeptossss'
+          repo-name: 'portfolio'
+          path: 'test/portfolio'
+          secret: ${{ secrets.GITHUB_TOKEN }}

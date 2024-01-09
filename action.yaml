@@ -1,0 +1,60 @@
+name: 'Add to Nuxt Content'
+description: 'Add a new markdown file / images to Nuxt Content and commit it to the repo'
+inputs:
+  repo-owner:
+    description: 'Owner of the repo to commit to'
+    required: true
+  repo-name:
+    description: 'Name of the repo to commit to'
+    required: true
+  branch:
+    description: 'Branch to commit to'
+    required: true
+    default: 'main'
+  distant-md-path:
+    description: 'Path to the folder where the markdown file will be copied'
+    required: true
+    default: './content/projects'
+  distant-img-path:
+    description: 'Path to the folder where the images will be copied'
+    required: true
+    default: './public/images/projects'
+  path:
+    description: 'Path to the folder containing the markdown file / images'
+    required: true
+    default: './portfolio'
+  commit:
+    description: 'Commit message'
+    required: false
+    default: '🚀 Add new content from GitHub Action'
+  secret:
+    description: 'GitHub token'
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+    - name: 'Checkout'
+      uses: 'actions/checkout@v2'
+    - name: 'Add md file to Nuxt Content'
+      uses: 'nkoppel/push-files-to-another-repository@1.1.0'
+      env:
+        API_TOKEN_GITHUB: ${{ inputs.secret }}
+      with:
+        source-files: ${{ inputs.path }}
+        destination-username: ${{ inputs.repo.owner }}
+        destination-repository: ${{ inputs.repo.name }}
+        destination-branch: ${{ inputs.branch }}
+        destination-folder: ${{ inputs.distant-md-path }}
+        commit-message: ${{ inputs.commit }}
+    - name: 'Add images to Nuxt Content'
+      uses: 'nkoppel/push-files-to-another-repository@1.1.0'
+      env:
+          API_TOKEN_GITHUB: ${{ inputs.secret }}
+      with:
+          source-files: ${{ inputs.path }}/images
+          destination-username: ${{ inputs.repo.owner }}
+          destination-repository: ${{ inputs.repo.name }}
+          destination-branch: ${{ inputs.branch }}
+          destination-folder: ${{ inputs.distant-img-path }}
+          commit-message: ${{ inputs.commit }}

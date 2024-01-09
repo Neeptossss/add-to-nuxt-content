@@ -4,7 +4,7 @@ jobs:
   test_action:
     runs-on: ubuntu-latest
     steps:
-      - uses: neeptossss/add-to-nuxt-content@v1.2
+      - uses: neeptossss/add-to-nuxt-content@v1.3
         with:
           repo-owner: 'neeptossss'
           repo-name: 'portfolio'

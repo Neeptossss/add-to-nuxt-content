@@ -19,15 +19,15 @@ jobs:
 
       - name: 'Add new content to Nuxt Content'
         run: |
-          if [ -d "./source/test" ]; then
-            cp -r ./source/test ./destination/content/projects
+          if [ "$(ls -A ./source/test/*.md 2> /dev/null)" ]; then
+            cp -r ./source/test/*.md ./destination/content/projects
           fi
-          if [ -d "./source/test/images" ]; then
-            cp -r ./source/test/images ./destination/public/images/projects
+          if [ "$(ls -A ./source/test/images/* 2> /dev/null)" ]; then
+            cp -r ./source/test/images/* ./destination/public/images/projects
           fi
           cd ./destination
           git config --local user.name "GitHub Action"
           git config --local user.email "github-actions@github.com"
           git add .
-          git commit -m "Add new content from GitHub Action"
+          git commit -m "🚀 Add new content from GitHub Action"
           git push

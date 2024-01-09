@@ -4,25 +4,24 @@ jobs:
   test_action:
     runs-on: ubuntu-latest
     steps:
-      - name: 'Checkout'
+      - name: 'Checkout source repo'
         uses: 'actions/checkout@v2'
-      - name: 'Add md file to Nuxt Content'
-        uses: 'cpina/github-action-push-to-another-repository@ssh-deploy-key'
-        env:
-          SSH_DEPLOY_KEY: ${{ secrets.SSH_KEY }}
         with:
-          source-directory: './test'
-          destination-github-username: 'neeptossss'
-          destination-repository-name: 'portfolio'
-          target-directory: './content/projects'
-          commit-message: '?? Add new content from GitHub Action'
-      - name: 'Add images to Nuxt Content'
-        uses: 'cpina/github-action-push-to-another-repository@ssh-deploy-key'
-        env:
-          SSH_DEPLOY_KEY: ${{ secrets.SSH_KEY }}
+          path: './source'
+
+      - name: 'Checkout destination repo'
+        uses: 'actions/checkout@v2'
         with:
-          source-directory: './test/images'
-          destination-github-username: 'neeptossss'
-          destination-repository-name: 'portfolio'
-          target-directory: './public/images/projects'
-          commit-message: '?? Add new content from GitHub Action'
+          repository: 'neeptossss/portfolio'
+          path: './destination'
+
+      - name: 'Add new content to Nuxt Content'
+        run: |
+          cp -r ./source/test ./destination/content/projects
+          cp -r ./source/test/images ./destination/public/images/projects
+          cd ./destination
+          git config --local user.name "GitHub Action"
+          git config --local user.email "github-actions@github.com"
+          git add .
+          git commit -m "Add new content from GitHub Action"
+          git push

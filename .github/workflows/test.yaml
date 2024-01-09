@@ -15,6 +15,7 @@ jobs:
           repository: 'neeptossss/portfolio'
           ref: 'main'
           path: './destination'
+          ssh-key: ${{ secrets.SSH_KEY }}
 
       - name: 'Add new content to Nuxt Content'
         run: |

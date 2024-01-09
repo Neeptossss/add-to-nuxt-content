@@ -37,7 +37,7 @@ runs:
     - name: 'Checkout'
       uses: 'actions/checkout@v2'
     - name: 'Add md file to Nuxt Content'
-      uses: 'nkoppel/push-files-to-another-repository@1.1.0'
+      uses: 'nkoppel/push-files-to-another-repository@v1.1.2'
       env:
         API_TOKEN_GITHUB: ${{ inputs.secret }}
       with:
@@ -48,7 +48,7 @@ runs:
         destination-folder: ${{ inputs.distant-md-path }}
         commit-message: ${{ inputs.commit }}
     - name: 'Add images to Nuxt Content'
-      uses: 'nkoppel/push-files-to-another-repository@1.1.0'
+      uses: 'nkoppel/push-files-to-another-repository@v1.1.2'
       env:
           API_TOKEN_GITHUB: ${{ inputs.secret }}
       with:

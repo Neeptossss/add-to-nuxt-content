@@ -29,5 +29,9 @@ jobs:
           git config --local user.name "GitHub Action"
           git config --local user.email "github-actions@github.com"
           git add .
-          git commit -m "🚀 Add new content from GitHub Action"
-          git push
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "🚀 Add new content from GitHub Action"
+            git push
+          fi

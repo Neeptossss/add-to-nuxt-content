@@ -42,8 +42,8 @@ runs:
         API_TOKEN_GITHUB: ${{ inputs.secret }}
       with:
         source-files: ${{ inputs.path }}
-        destination-username: ${{ inputs.repo.owner }}
-        destination-repository: ${{ inputs.repo.name }}
+        destination-username: ${{ inputs.repo-owner }}
+        destination-repository: ${{ inputs.repo-name }}
         destination-branch: ${{ inputs.branch }}
         destination-directory: ${{ inputs.distant-md-path }}
         commit-message: ${{ inputs.commit }}
@@ -53,8 +53,8 @@ runs:
           API_TOKEN_GITHUB: ${{ inputs.secret }}
       with:
           source-files: ${{ inputs.path }}/images
-          destination-username: ${{ inputs.repo.owner }}
-          destination-repository: ${{ inputs.repo.name }}
+          destination-username: ${{ inputs.repo-owner }}
+          destination-repository: ${{ inputs.repo-name }}
           destination-branch: ${{ inputs.branch }}
           destination-directory: ${{ inputs.distant-img-path }}
           commit-message: ${{ inputs.commit }}

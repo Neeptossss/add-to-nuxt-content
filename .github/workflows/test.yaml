@@ -4,34 +4,13 @@ jobs:
   test_action:
     runs-on: ubuntu-latest
     steps:
-      - name: 'Checkout source repo'
-        uses: 'actions/checkout@v2'
+      - name: 'Mirror to portfolio repo'
+        uses: 'neeeptossss/add-to-nuxt-content@v1.5'
         with:
-          path: './source'
-
-      - name: 'Checkout destination repo'
-        uses: 'actions/checkout@v2'
-        with:
-          repository: 'neeptossss/portfolio'
-          ref: 'main'
-          path: './destination'
+          repo: 'neeeptossss/portfolio'
+          branch: 'main'
+          distant-md-path: 'content/projects/'
+          distant-img-path: 'public/images/'
+          path: 'portfolio'
+          commit: '🚀 Add new content from GitHub Action'
           ssh-key: ${{ secrets.SSH_KEY }}
-
-      - name: 'Add new content to Nuxt Content'
-        run: |
-          if [ "$(ls -A ./source/test/portfolio/*.md 2> /dev/null)" ]; then
-            cp -r ./source/test/portfolio/*.md ./destination/content/projects/
-          fi
-          if [ "$(ls -A ./source/test/portfolio/images/* 2> /dev/null)" ]; then
-            cp -r ./source/test/portfolio/images/* ./destination/public/images/
-          fi
-          cd ./destination
-          git config --local user.name "GitHub Action"
-          git config --local user.email "github-actions@github.com"
-          git add .
-          if git diff --staged --quiet; then
-            echo "No changes to commit"
-          else
-            git commit -m "🚀 Add new content from GitHub Action"
-            git push
-          fi

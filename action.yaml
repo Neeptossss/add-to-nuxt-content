@@ -59,8 +59,6 @@ runs:
         git add -A
         echo "git status"
         git status
-        echo "git diff --staged --quiet"
-        git diff --staged --quiet
         if git diff --staged --quiet; then
           echo "No changes to commit"
         else

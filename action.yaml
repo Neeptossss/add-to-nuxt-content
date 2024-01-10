@@ -48,15 +48,19 @@ runs:
       shell: bash
       run: |
         if [ "$(ls -A ./source/${{ inputs.path }}/*.md 2> /dev/null)" ]; then
-          cp -r ./source/${{ inputs.path }}/*.md ./destination/${{ inputs.distant-md-path }}
+          cp -rf ./source/${{ inputs.path }}/*.md ./destination/${{ inputs.distant-md-path }}
         fi
         if [ "$(ls -A ./source/${{ inputs.path }}/images/* 2> /dev/null)" ]; then
-          cp -r ./source/${{ inputs.path }}/images/* ./destination/${{ inputs.distant-img-path }}
+          cp -rf ./source/${{ inputs.path }}/images/* ./destination/${{ inputs.distant-img-path }}
         fi
         cd ./destination
         git config --local user.name "GitHub Action"
         git config --local user.email "github-actions@github.com"
-        git add .
+        git add -A
+        echo "git status"
+        git status
+        echo "git diff --staged --quiet"
+        git diff --staged --quiet
         if git diff --staged --quiet; then
           echo "No changes to commit"
         else

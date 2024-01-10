@@ -7,7 +7,7 @@ jobs:
       - name: 'Mirror to portfolio repo'
         uses: 'neeptossss/add-to-nuxt-content@v1.6'
         with:
-          repo: 'neeeptossss/portfolio'
+          repo: 'neeptossss/portfolio'
           branch: 'main'
           distant-md-path: 'content/projects/'
           distant-img-path: 'public/images/'

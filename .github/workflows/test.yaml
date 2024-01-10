@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 'Mirror to portfolio repo'
-        uses: 'neeptossss/add-to-nuxt-content@v1.7'
+        uses: 'neeptossss/add-to-nuxt-content@v1.8'
         with:
           repo: 'neeptossss/portfolio'
           branch: 'main'

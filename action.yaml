@@ -42,7 +42,7 @@ runs:
         repository: ${{ inputs.repo }}
         ref: ${{ inputs.branch }}
         path: './destination'
-        ssh-key: ${{ input.ssh-key }}
+        ssh-key: ${{ inputs.ssh-key }}
 
     - name: 'Add new content to Nuxt Content'
       shell: bash

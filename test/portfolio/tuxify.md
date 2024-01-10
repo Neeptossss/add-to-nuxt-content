@@ -1,7 +1,7 @@
 ---
 title: Tuxify2
 description: Tuxify is a workflow automation tool version 2.
-date: 18-04-2023
+date: 20-11-2023
 image: /images/tuxify.jpg
 ---
 

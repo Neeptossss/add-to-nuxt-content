@@ -11,6 +11,6 @@ jobs:
           branch: 'main'
           distant-md-path: 'content/projects/'
           distant-img-path: 'public/images/'
-          path: 'portfolio'
+          path: 'test/portfolio'
           commit: '🚀 Add new content from GitHub Action'
           ssh-key: ${{ secrets.SSH_KEY }}

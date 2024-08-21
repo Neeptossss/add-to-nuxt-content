@@ -1,5 +1,8 @@
 name: 'Add to Nuxt Content'
 description: 'Add a new markdown file / images to Nuxt Content and commit it to the repo'
+icon: 'book'
+color: 'purple'
+
 inputs:
   repo:
     description: 'Repository to commit to'
